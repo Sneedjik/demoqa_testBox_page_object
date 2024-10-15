@@ -5,6 +5,11 @@ import pages.TextBoxPage;
 
 public class TextBoxPageObjectTest extends TestBase {
 
+    String name = "Bony";
+    String email = "Bony@man.com";
+    String currentAddress = "Some place 1";
+    String permanentAddress = "Another place 2";
+
 
     TextBoxPage textBoxPage = new TextBoxPage();
 
@@ -14,16 +19,16 @@ public class TextBoxPageObjectTest extends TestBase {
                 openPage()
                 .removeBanners()
 
-                .setName("Bony")
-                .setEmail("Bony@man.com")
-                .setCurrentAddress("Some place 1")
-                .setPermanentAddress("Another place 2")
+                .setName(name)
+                .setEmail(email)
+                .setCurrentAddress(currentAddress)
+                .setPermanentAddress(permanentAddress)
                 .submit()
 
-                .checkResult("Name:", "Bony")
-                .checkResult("Email:", "Bony@man.com")
-                .checkResult("Current Address :", "Some place 1")
-                .checkResult("Permananet Address :", "Another place 2");
+                .checkResult("Name:", name)
+                .checkResult("Email:", email)
+                .checkResult("Current Address :", currentAddress)
+                .checkResult("Permananet Address :", permanentAddress);
     }
 
 }
