@@ -1,26 +1,29 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import pages.TextBoxPage;
 
 public class TextBoxPageObjectTest extends TestBase {
 
-    @Test
-    void fillFormTest() {
-        open("automation-practice-form");
-        $("#userName").setValue("Bony");
-        $("#userEmail").setValue("Bony@man.com");
-        $("#currentAddress").setValue("Some place 1");
-        $("#permanentAddress").setValue("Another place 2");
-        $("#submit").click();
 
-        $("#output #name").shouldHave(text("Bony"));
-        $("#output #email").shouldHave(text("Bony@man.com"));
-        $("#output #currentAddress").shouldHave(text("Some place 1"));
-        $("#output #permanentAddress").shouldHave(text("Another place 2"));
+    TextBoxPage textBoxPage = new TextBoxPage();
+
+    @Test
+    void fillFormTestPageObject() {
+        textBoxPage.
+                openPage()
+                .removeBanners()
+
+                .setName("Bony")
+                .setEmail("Bony@man.com")
+                .setCurrentAddress("Some place 1")
+                .setPermanentAddress("Another place 2")
+                .submit()
+
+                .checkResult("Name:", "Bony")
+                .checkResult("Email:", "Bony@man.com")
+                .checkResult("Current Address :", "Some place 1")
+                .checkResult("Permananet Address :", "Another place 2");
     }
 
 }
